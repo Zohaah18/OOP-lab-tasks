@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+struct Event {
+    string name;
+    string date;
+    string venue;
+    string organizer;
+};
+
+void addEvent(vector<Event>& events) {
+    Event newEvent;
+    cout << "Enter Event Name: ";
+    getline(cin, newEvent.name);
+    cout << "Enter Date: ";
+    getline(cin, newEvent.date);
+    cout << "Enter Venue: ";
+    getline(cin, newEvent.venue);
+    cout << "Enter Organizer: ";
+    getline(cin, newEvent.organizer);
+    events.push_back(newEvent);
+}
+
+void displayEvents(const vector<Event>& events) {
+    cout << "All Events:\n";
+    for (const auto& event : events) {
+        cout << "Event Name: " << event.name << endl;
+        cout << "Date: " << event.date << endl;
+        cout << "Venue: " << event.venue << endl;
+        cout << "Organizer: " << event.organizer << endl;
+    }
+}
+
+void searchEvents(const vector<Event>& events, const string& searchDate) {
+    bool found = false;
+    cout << "Events on " << searchDate << endl;
+    for (const auto& event : events) {
+        if (event.date == searchDate) {
+            cout << "Event Name: " << event.name << endl;
+            cout << "Venue: " << event.venue << endl;
+            cout << "Organizer: " << event.organizer << endl;
+            found = true;
+        }
+    }
+    if (!found) {
+        cout << "No events found on this date.\n";
+    }
+}
+
+int main() {
+    int numEvents;
+    cout << "Enter the total number of events: ";
+    cin >> numEvents;
+    cin.ignore();
+
+    vector<Event> events;
+    for (int i = 0; i < numEvents; ++i) {
+        cout << "\nEnter details for Event " << i + 1 << ":\n";
+        addEvent(events);
+    }
+
+    displayEvents(events);
+
+    //search events by date
+    string searchDate;
+    cout << "Enter the date to search events (YYYY-MM-DD): ";
+    getline(cin, searchDate);
+    searchEvents(events, searchDate);
+
+    return 0;
+}
