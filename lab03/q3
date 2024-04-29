@@ -1,0 +1,232 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Task {
+private:
+    string task_details;
+public:
+    Task() {
+        task_details = " ";
+    }
+    void set_task_details(string details) {
+        task_details = details;
+    }
+    string get_task_details() const {
+        return task_details;
+    }
+};
+
+class Calendar {
+private:
+    Task January[31];
+    Task February[28];
+    Task March[31];
+    Task April[30];
+    Task May[31];
+    Task June[30];
+    Task July[31];
+    Task August[31];
+    Task September[30];
+    Task October[31];
+    Task November[30];
+    Task December[31];
+    int year;
+
+public:
+    Calendar(int year) {
+        this->year = year;
+    }
+
+   void add_task(string detail, int month, int day) {
+    Task* selected_month = nullptr;
+    switch (month) {
+        case 1:
+            selected_month = January;
+            break;
+        case 2:
+            selected_month = February;
+            break;
+        case 3:
+            selected_month = March;
+            break;
+        case 4:
+            selected_month = April;
+            break;
+        case 5:
+            selected_month = May;
+            break;
+        case 6:
+            selected_month = June;
+            break;
+        case 7:
+            selected_month = July;
+            break;
+        case 8:
+            selected_month = August;
+            break;
+        case 9:
+            selected_month = September;
+            break;
+        case 10:
+            selected_month = October;
+            break;
+        case 11:
+            selected_month = November;
+            break;
+        case 12:
+            selected_month = December;
+            break;
+        default:
+            cout << "Invalid month." << endl;
+            return;
+    }
+
+    if (!selected_month) {
+        cout << "Invalid month." << endl;
+        return;
+    }
+
+    if (!selected_month[day - 1].get_task_details().empty()) {
+        cout << "There's already a task assigned for day " << day << " of month " << month << "." << endl;
+        return;
+    }
+
+    selected_month[day - 1].set_task_details(detail);
+}
+
+
+    void remove_task(int month, int day) {
+        switch (month) {
+            case 1:
+                January[day - 1].set_task_details("");
+                break;
+            case 2:
+                February[day - 1].set_task_details("");
+                break;
+            case 3:
+                March[day - 1].set_task_details("");
+                break;
+            case 4:
+                April[day - 1].set_task_details("");
+                break;
+            case 5:
+                May[day - 1].set_task_details("");
+                break;
+            case 6:
+                June[day - 1].set_task_details("");
+                break;
+            case 7:
+                July[day - 1].set_task_details("");
+                break;
+            case 8:
+                August[day - 1].set_task_details("");
+                break;
+            case 9:
+                September[day - 1].set_task_details("");
+                break;
+            case 10:
+                October[day - 1].set_task_details("");
+                break;
+            case 11:
+                November[day - 1].set_task_details("");
+                break;
+            case 12:
+                December[day - 1].set_task_details("");
+                break;
+            default:
+                cout << "Invalid month." << endl;
+        }
+    }
+
+    void display_tasks() const {
+        cout << "Tasks for " << year << ":" << endl;
+        for (int i = 0; i < 12; ++i) {
+            switch (i + 1) {
+                case 1:
+                    cout << "January:" << endl;
+                    display_month_tasks(January, 31);
+                    break;
+                case 2:
+                    cout << "February:" << endl;
+                    display_month_tasks(February, 28);
+                    break;
+                case 3:
+                    cout << "March:" << endl;
+                    display_month_tasks(March, 31);
+                    break;
+                case 4:
+                    cout << "April:" << endl;
+                    display_month_tasks(April, 30);
+                    break;
+                case 5:
+                    cout << "May:" << endl;
+                    display_month_tasks(May, 31);
+                    break;
+                case 6:
+                    cout << "June:" << endl;
+                    display_month_tasks(June, 30);
+                    break;
+                case 7:
+                    cout << "July:" << endl;
+                    display_month_tasks(July, 31);
+                    break;
+                case 8:
+                    cout << "August:" << endl;
+                    display_month_tasks(August, 31);
+                    break;
+                case 9:
+                    cout << "September:" << endl;
+                    display_month_tasks(September, 30);
+                    break;
+                case 10:
+                    cout << "October:" << endl;
+                    display_month_tasks(October, 31);
+                    break;
+                case 11:
+                    cout << "November:" << endl;
+                    display_month_tasks(November, 30);
+                    break;
+                case 12:
+                    cout << "December:" << endl;
+                    display_month_tasks(December, 31);
+                    break;
+            }
+        }
+    }
+
+private:
+    void display_month_tasks(const Task month[], int days) const {
+        for (int i = 0; i < days; ++i) {
+            if (!month[i].get_task_details().empty()) {
+                cout << "Day " << i + 1 << ": " << month[i].get_task_details() << endl;
+            }
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Calendar calendar(2024);
+
+    // Adding tasks manually
+    calendar.add_task("Meeting with client", 1, 10); // January 10th
+    calendar.add_task("Submit report", 3, 15); // March 15th
+    calendar.add_task("Buy groceries", 5, 20); // May 20th
+    calendar.add_task("Dentist appointment", 7, 5); // July 5th
+    calendar.add_task("Prepare presentation", 9, 12); // September 12th
+    calendar.add_task("Family dinner", 11, 25); // November 25th
+
+    // Display tasks
+    cout << "Initial tasks:\n";
+    calendar.display_tasks();
+
+    // Remove a task
+    calendar.remove_task(5, 20); // Remove May 20th task
+
+    // Display updated tasks
+    cout << "Tasks after removal:\n";
+    calendar.display_tasks();
+
+    return 0;
+}
