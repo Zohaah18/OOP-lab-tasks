@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+//function to calculate gcd
+int GCD(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    return GCD(b, a % b);
+}
+
+// Function to calculate lcm
+int LCM(int a, int b) {
+    return (a * b) / GCD(a, b);
+}
+
+int main() {
+    int num1, num2;
+    cout << "Enter two numbers: ";
+    cin >> num1 >> num2;
+
+    int gcd = GCD(num1, num2);
+    cout << "Greatest Common Divisor (GCD) of " << num1 << " and " << num2 << " is: " << gcd <<endl;
+
+    int lcm = LCM(num1, num2);
+    cout << "Least Common Multiple (LCM) of " << num1 << " and " << num2 << " is: " << lcm <<endl;
+
+    return 0;
+}
