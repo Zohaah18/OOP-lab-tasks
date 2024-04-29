@@ -1,0 +1,136 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Book {
+    string title;
+    string author;
+    int year;
+    string genre;
+};
+
+void create_book(Book *b, int size, int &top) {
+    Book temp;
+    cout << "Enter title: ";
+    cin >> temp.title;
+    cout << "Enter author: ";
+    cin >> temp.author;
+    cout << "Enter year: ";
+    cin >> temp.year;
+    cout << "Enter genre: ";
+    cin >> temp.genre;
+    top++;
+    b[top] = temp;
+}
+
+void display_book(Book *b, int index, int &top) {
+    if (index > top) return;
+    cout << "Book title: " << b[index].title << endl;
+    cout << "Book author: " << b[index].author << endl;
+    cout << "Year of publication: " << b[index].year << endl;
+    cout << "Genre: " << b[index].genre << endl;
+}
+
+int search_by_title(Book *b, int top, string search_val) {
+    for (int i = 0; i <= top; i++)
+        if (search_val == b[i].title) return i;
+    return -1;
+}
+
+int search_by_author(Book *b, int top, string search_val) {
+    for (int i = 0; i <= top; i++)
+        if (search_val == b[i].author) return i;
+    return -1;
+}
+
+void edit_book(Book *b, string search_val, int top) {
+    if (search_by_author(b, top, search_val) == -1 && search_by_title(b, top, search_val) == -1) {
+        cout << "Book not found" << endl;
+        return;
+    }
+    int index = search_by_author(b, top, search_val) != -1 ? search_by_author(b, top, search_val) : search_by_author(b, top, search_val);
+    cout << "What do you want to edit?" << endl;
+    cout << "1. Title" << endl << "2. Author" << endl << "3. Year of publication" << endl << "4. Genre" << endl;
+    int choice;
+    cin >> choice;
+    switch (choice) {
+        case 1:
+            cout << "Enter new title: ";
+            cin >> b[index].title;
+            break;
+        case 2:
+            cout << "Enter new author: ";
+            cin >> b[index].author;
+            break;
+        case 3:
+            cout << "Enter new Year of publication: ";
+            cin >> b[index].year;
+            break;
+        case 4:
+            cout << "Enter new genre: ";
+            cin >> b[index].genre;
+            break;
+        default:
+            cout << "Invalid choice!" << endl;
+    }
+}
+
+int main() {
+    Book book[100];
+    int top = -1;
+    int choice;
+    string search_val;
+
+    do {
+        cout << "\n1. Add a book\n2. Display book details\n3. Search by title\n4. Search by author\n5. Edit a book\n6. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                create_book(book, 100, top);
+                break;
+            case 2:
+                if (top == -1) {
+                    cout << "No books in the library." << endl;
+                } else {
+                    for (int i = 0; i <= top; i++) {
+                        display_book(book, i, top);
+                        cout << endl;
+                    }
+                }
+                break;
+            case 3:
+                cout << "Enter the title to search: ";
+                cin >> search_val;
+                if (search_by_title(book, top, search_val) != -1) {
+                    display_book(book, search_by_title(book, top, search_val), top);
+                } else {
+                    cout << "Book not found." << endl;
+                }
+                break;
+            case 4:
+                cout << "Enter the author to search: ";
+                cin >> search_val;
+                if (search_by_author(book, top, search_val) != -1) {
+                    display_book(book, search_by_author(book, top, search_val), top);
+                } else {
+                    cout << "Book not found." << endl;
+                }
+                break;
+            case 5:
+                cout << "Enter the title or author of the book to edit: ";
+                cin >> search_val;
+                edit_book(book, search_val, top);
+                break;
+            case 6:
+                cout << "Exiting program..." << endl;
+                break;
+            default:
+                cout << "Invalid choice!" << endl;
+        }
+    } while (choice != 6);
+
+    return 0;
+}
