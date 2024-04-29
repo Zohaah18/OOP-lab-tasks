@@ -1,0 +1,32 @@
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+class Book {
+protected:
+    string title;
+    string author;
+    string publisher;
+public:
+    Book(string title, string author, string publisher)
+        : title(title), author(author), publisher(publisher) {}
+    void display() {
+        cout &lt;&lt; &quot;Title: &quot; &lt;&lt; title &lt;&lt; endl;
+        cout &lt;&lt; &quot;Author: &quot; &lt;&lt; author &lt;&lt; endl;
+        cout &lt;&lt; &quot;Publisher: &quot; &lt;&lt; publisher &lt;&lt; endl;
+    }
+};
+class FictionBook : public Book {
+private:
+    string genre;
+    string protagonist;
+public:
+    FictionBook(string title, string author, string publisher, string genre,
+string protagonist)
+        : Book(title, author, publisher), genre(genre), protagonist(protagonist)
+{}
+    void display() {
+        Book::display();
+        cout &lt;&lt; &quot;Genre: &quot; &lt;&lt; genre &lt;&lt; endl;
+        cout &lt;&lt; &quot;Protagonist: &quot; &lt;&lt; protagonist &lt;&lt; endl;
+    }
+};
