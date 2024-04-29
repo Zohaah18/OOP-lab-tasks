@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Office {
+private:
+    string Location;
+    int SeatingCapacity;
+    string Furniture[3];
+
+public:
+    Office(string location = " ", int seatingCapacity = 0, string furniture1 = "", string furniture2 = "", string furniture3 = "")
+        : Location(location), SeatingCapacity(seatingCapacity) {
+        Furniture[0] = furniture1;
+        Furniture[1] = furniture2;
+        Furniture[2] = furniture3;
+    }
+
+    // Method to display information about the office
+    void displayInformation() {
+        cout << "Location: " << Location << endl;
+        cout << "Seating Capacity: " << SeatingCapacity << endl;
+        cout << "Furniture: ";
+        for (int i = 0; i < 3; i++) {
+            cout << Furniture[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Office office1; 
+    Office office2("Building A", 50); 
+    Office office3("Building B", 30, "Desk", "Chair"); 
+
+    cout << "Office 1 info: " << endl;
+    office1.displayInformation();
+    cout << endl;
+
+    cout << "Office 2 info: " << endl;
+    office2.displayInformation();
+    cout << endl;
+
+    cout << "Office 3 info: " << endl;
+    office3.displayInformation();
+    cout << endl;
+
+    return 0;
+}
