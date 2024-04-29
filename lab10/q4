@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+class perimeter{
+    private:
+    int length;
+    int breadth;
+    public:
+    perimeter(int l,int b):length(l),breadth(b){}
+    friend class printclass;
+    int calculateperimeter(){
+        return 2 * (length + breadth);
+    }
+};
+class printclass{
+    public:
+    void displayperimeter(perimeter p){
+        cout<<"Perimeter: "<<p.calculateperimeter()<<endl;
+    }
+};
+int main(){
+    perimeter p(5,4);
+    printclass print;
+    print.displayperimeter(p);
+    return 0;
+}
