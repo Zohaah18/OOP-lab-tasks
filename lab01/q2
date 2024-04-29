@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+int main(){
+	int maths;
+	int sci;
+	int eng;
+	int totalmarks;
+	int avg;
+	int students;
+	 cout<< "Enter number of students:";
+	 cin>>students;
+	 for(int i=0;i<=students;i++){
+	
+	cout<<"Enter marks for maths: ";
+	cin>> maths;
+	cout<<"Enter marks for science: ";
+	cin>> sci;
+	cout<<"Enter marks for english: ";
+	cin>> eng;
+	   totalmarks=maths+sci+eng;
+	   avg=totalmarks/3;
+	 cout<<"Total marks are:"<<totalmarks<<endl;
+	 cout<<"Average is:"<<avg<<endl;
+	 if(avg<0 || avg>100){
+	 	cout<<"Enter valid marks";
+	 }
+	 else if(avg<=100 || avg>=90){
+	 	cout<< "Grade is A";
+	 }
+	 else if(avg<90 || avg>=80){
+	 	cout<< "Grade is B";
+	 }
+	 else if(avg<80 || avg>=70){
+	 	cout<< "Grade is C";
+	 }
+	 else if(avg<70 || avg>=60){
+	 	cout<< "Grade is D";
+	 }
+	  else if(avg<60){
+	 	cout<< "Grade is F";
+	 }
+}
+}
