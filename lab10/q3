@@ -1,0 +1,33 @@
+#include <iostream>
+
+using namespace std;
+
+class Shape {
+protected:
+    double area;
+
+public:
+    Shape(double a) : area(a) {}
+
+    double getArea() const {
+        return area;
+    }
+
+    Shape operator+(const Shape& other) const {
+        double combinedArea = area + other.area;
+        return Shape(combinedArea);
+    }
+};
+
+int main() {
+    Shape shape1(25.0);
+    Shape shape2(40.0);
+
+    Shape combinedShape = shape1 + shape2;
+
+    cout << "Area of shape1: " << shape1.getArea() << endl;
+    cout << "Area of shape2: " << shape2.getArea() << endl;
+    cout << "Combined area: " << combinedShape.getArea() << endl;
+
+    return 0;
+}
