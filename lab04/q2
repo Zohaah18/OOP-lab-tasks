@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class book{
+	private:
+		string name;
+		string author;
+		string isbn;
+		int totalpages;
+		int pagesread;
+		
+	public:
+		book(){
+			name="game of thrones";
+			author="emily james";
+			isbn="123443543654";
+			totalpages=1000;
+			pagesread=0;
+		}
+		// setter methods
+		void setname(const string &bookname){
+			name=bookname;
+		}
+		void setauthor(const string &authorname){
+			author=authorname;
+		}
+		void setisbn(const string &isbn_num){
+			isbn=isbn_num;
+		}
+		void set_totalpgs(int total_pgs){
+			totalpages=total_pgs;
+		}
+		void set_pagesread(int readpgs){
+			pagesread=readpgs;
+		}
+		void bookinfo(){
+			cout<<"Name: "<<name<<endl;
+			cout<<"Author: "<<author<<endl;
+			cout<<"ISBN Number: "<<isbn<<endl;
+			cout<<"Total pages: "<<totalpages<<endl;
+			cout<<"Pages Read: "<<pagesread<<endl;
+		}
+};
+
+  int main(){
+  	book b1;
+  	b1.setname("Harry potter");
+  	b1.setauthor("Jk.Rowling");
+  	b1.setisbn("18378647863");
+  	b1.set_totalpgs(1000);
+  	b1.set_pagesread(0);
+  	b1.bookinfo();
+  	return 0;
+  }
