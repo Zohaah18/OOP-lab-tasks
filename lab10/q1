@@ -1,0 +1,67 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Logo;
+
+class Platform {
+private:
+    string name;
+    Logo* logo;
+
+public:
+    Platform(string name, Logo* logo) : name(name), logo(logo) {}
+
+    void display();
+};
+
+class Server {
+private:
+    string name;
+
+public:
+    Server(string name) : name(name) {}
+
+    void display();
+};
+
+class Logo {
+private:
+    string logoName;
+    friend class Platform;
+
+public:
+    Logo(string name) : logoName(name) {}
+
+    string getLogo() {
+        return logoName;
+    }
+};
+
+void Platform::display() {
+    cout << "Platform: " << name << endl;
+    cout << "Logo: " << logo->getLogo() << endl;
+}
+
+void Server::display() {
+    cout << "Server Name: " << name << endl;
+}
+
+int main() {
+    Logo originalLogo("Blue Bird");
+    Platform platform("Twitter", &originalLogo);
+    Server server("Twitter Server");
+
+    cout << "Original Parameters:" << endl;
+    platform.display();
+    server.display();
+
+    originalLogo = Logo("Doge Coin");
+
+    cout << "Modified Parameters:" << endl;
+    platform.display();
+    server.display();
+
+    return 0;
+}
