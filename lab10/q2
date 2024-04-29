@@ -1,0 +1,40 @@
+#include <iostream>
+
+using namespace std;
+
+class Number {
+private:
+    int value;
+
+public:
+    Number(int val) : value(val) {}
+
+    Number operator--() {
+        value *= 4;
+        return *this;
+    }
+
+    Number operator--(int) {
+        Number temp(value);
+        value /= 4;
+        return temp;
+    }
+
+    void display() {
+        cout << "Value: " << value << endl;
+    }
+};
+
+int main() {
+    Number num(16);
+
+    cout << "Prefix decrement:" << endl;
+    --num;
+    num.display();
+
+    cout << "\nPostfix decrement:" << endl;
+    num--;
+    num.display();
+
+    return 0;
+}
