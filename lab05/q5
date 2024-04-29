@@ -1,0 +1,109 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Engine {
+private:
+    string type;
+
+public:
+    Engine(const string& engineType) : type(engineType) {}
+
+    string getType() const {
+        return type;
+    }
+};
+
+class Wheel {
+private:
+    int size;
+
+public:
+    Wheel(int wheelSize) : size(wheelSize) {}
+
+    int getSize() const {
+        return size;
+    }
+};
+
+class Headlight {
+private:
+    string type;
+
+public:
+    Headlight(const string& headlightType) : type(headlightType) {}
+
+    string getType() const {
+        return type;
+    }
+};
+
+class Steering {
+private:
+    string type;
+
+public:
+    Steering(const string& steeringType) : type(steeringType) {}
+
+    string getType() const {
+        return type;
+    }
+};
+
+class Car {
+private:
+    Engine engine;
+    Wheel* wheels; 
+    Headlight* headlights; 
+    Steering steering;
+
+    int numWheels;
+    int numHeadlights;
+
+public:
+    Car(const string& engineType, const string& steeringType, int wheelSize, int numWheels, const string& headlightType, int numHeadlights)
+        : engine(engineType), steering(steeringType), numWheels(numWheels), numHeadlights(numHeadlights) {
+
+        wheels = new Wheel[numWheels];
+        for (int i = 0; i < numWheels; ++i) {
+            wheels[i] = Wheel(wheelSize);
+        }
+        headlights = new Headlight[numHeadlights];
+        for (int i = 0; i < numHeadlights; ++i) {
+            headlights[i] = Headlight(headlightType);
+        }
+    }
+
+    
+    ~Car() {
+        delete[] wheels;  
+        delete[] headlights;  
+    }
+    string getEngineType() const {
+        return engine.getType();
+    }
+    string getSteeringType() const {
+        return steering.getType();
+    }
+
+    
+    int getWheelSize() const {
+        return wheels[0].getSize(); 
+    }
+
+    int getNumHeadlights() const {
+        return numHeadlights;
+    }
+};
+
+int main() {
+    Car car("V6", "Power Steering", 18, 4, "LED", 2);
+
+    cout << "Engine type: " << car.getEngineType() << endl;
+    cout << "Steering type: " << car.getSteeringType() << endl;
+    cout << "Wheel size: " << car.getWheelSize() << " inches" << endl;
+    cout << "Number of headlights: " << car.getNumHeadlights() << endl;
+
+    return 0;
+}
