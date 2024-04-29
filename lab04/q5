@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Office {
+private:
+    string Location;
+    int SeatingCapacity;
+    string* Furniture;
+
+public:
+    Office(string location = " ", int seatingCapacity = 0, int furnitureSize = 3)
+        : Location(location), SeatingCapacity(seatingCapacity) {
+        Furniture = new string[furnitureSize];
+        for (int i = 0; i < furnitureSize; i++) {
+            Furniture[i] = "";
+        }
+    }
+
+   
+    ~Office() {
+        delete[] Furniture;
+    }
+
+    void displayInformation() {
+        cout << "Location: " << Location << endl;
+        cout << "Seating Capacity: " << SeatingCapacity << endl;
+        cout << "Furniture: ";
+        for (int i = 0; i < 3; i++) {
+            cout << Furniture[i] << " "<<endl;
+        }
+    }
+};
+
+int main() {
+    Office* office1 = new Office("Building A", 50, 3);
+    cout << "Office 1 info: " << endl;
+    office1->displayInformation();
+    delete office1;
+    return 0;
+}
