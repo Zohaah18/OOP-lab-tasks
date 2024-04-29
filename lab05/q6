@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class GraphicsRenderingEngine {
+public:
+    void render() {
+        cout << "Graphics rendering engine: " << endl;
+    }
+};
+
+class InputHandler {
+public:
+    void handleInput() {
+        cout << "Input handler: " << endl;
+    }
+};
+
+class PhysicsEngine {
+public:
+    void simulatePhysics() {
+        cout << "Physics engine: " << endl;
+    }
+};
+
+class GameEngine {
+private:
+    GraphicsRenderingEngine GE;
+    InputHandler IH;
+    PhysicsEngine pE;
+
+public:
+    GameEngine() {}
+
+    void startGame() {
+        GE.render();
+        IH.handleInput();
+        PE.simulatePhysics();
+        cout << "Game started successfully!" << endl;
+    }
+};
+
+int main() {
+    GameEngine gameEngine;
+    gameEngine.startGame();
+
+    return 0;
+}
