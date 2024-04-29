@@ -1,0 +1,66 @@
+#include <iostream>
+#include <cstring> 
+
+using namespace std;
+
+class BankAccount {
+private:
+    int accountId;
+    double balance;
+    int* transactionHistory;
+    int numTransactions;
+
+public:
+    BankAccount(int id, double initialBalance, const int* transactions, int numTrans)
+        : accountId(id), balance(initialBalance), numTransactions(numTrans) {
+        transactionHistory = new int[numTransactions];
+        memcpy(transactionHistory, transactions, numTransactions * sizeof(int));
+    }
+    BankAccount(const BankAccount& other)
+        : accountId(other.accountId), balance(other.balance), numTransactions(other.numTransactions) {
+        transactionHistory = new int[numTransactions];
+        memcpy(transactionHistory, other.transactionHistory, numTransactions * sizeof(int));
+    }
+    ~BankAccount() {
+        delete[] transactionHistory;
+    }
+    void display() const {
+        cout << "Account ID: " << accountId << endl;
+        cout << "Balance: " << balance << endl;
+        cout << "Transaction History:" << endl;
+        for (int i = 0; i < numTransactions; ++i) {
+            cout << transactionHistory[i] <<endl;
+        }
+    }
+
+    void updateTransactionHistory(const int* transactions, int numTrans) {
+
+        delete[] transactionHistory;
+        transactionHistory = new int[numTrans];
+        memcpy(transactionHistory, transactions, numTrans * sizeof(int));
+        numTransactions = numTrans;
+    }
+};
+
+int main() {
+    int initialTransactions[] = {100, -50, 200, -20};
+    int updatedTransactions[] = {150, -80, 300};
+
+    BankAccount original(123456, 1000.0, initialTransactions, 4);
+
+   
+    BankAccount copy(original);
+
+    cout << "Original Account:" << endl;
+    original.display();
+    cout << endl;
+    cout << "Copied Account:" << endl;
+    copy.display();
+
+    original.updateTransactionHistory(updatedTransactions, 3);
+
+    cout << "Original Account after updating transaction history:" << endl;
+    original.display();
+
+    return 0;
+}
