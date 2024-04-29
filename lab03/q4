@@ -1,0 +1,93 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class smartphone{
+	private:
+		string brand;
+		string model;
+		string displayresolution;
+		int ram;
+		int rom;
+		int storage;
+		public:
+			// setter functions
+			void setbrand(string b){
+				brand=b;
+			}
+			void setmodel(string m){
+				model=m;
+			}
+			void setresolution(string resolution){
+				displayresolution=resolution;
+			}
+			void setram(int r){
+				ram=r;
+			}
+			void setrom(int r){
+				rom=r;
+			}
+			void setstorage(int s){
+			   storage=s;
+			}
+			// getter fumctions
+			string getbrand(){
+				return brand;
+			}
+			string getmodel(){
+				return model;
+			}
+			string getresolution(){
+				return displayresolution;
+			}
+			int getram(){
+				return ram;
+			}
+			int getrom(){
+				return rom;
+			}
+			int getstorage(){
+				return storage;
+			}
+			// actions that smartphone can perform
+			void makephonecall(const string &phonenumber){
+				cout<<"Making phonecall: "<<phonenumber<<endl;
+			}
+			void sendmessage(const string &recipient,const string &message){
+				cout<<"Sending Message: "<<recipient<<" : "<<message<<endl;
+			}
+			void connectwifi(const string &networkname){
+				cout<<"connecting to network :"<<networkname<<endl;
+			}
+			void browseinternet(){
+				cout<<"Browsing the internet"<<endl;
+			}
+};
+      int main(){
+      	//creatig objects
+      	smartphone s1;
+      	// setting attributes using setter function
+      	s1.setbrand("Samsung");
+      	s1.setmodel("Galaxy note");
+      	s1.setresolution("2400 * 1080 pixels");
+      	s1.setram(8);
+      	s1.setrom(128);
+      	s1.setstorage(256);
+      	
+        // display attributes:
+        cout<<"s1: "<<endl;
+        cout<<"brand: "<<s1.getbrand()<<endl;
+        cout<<"model:"<<s1.getmodel()<<endl;
+        cout<<"resolution: "<<s1.getresolution()<<endl;
+        cout<<"ram: "<<s1.getram()<<endl;
+        cout<<"rom: "<<s1.getrom()<<endl;
+        cout<<"storage: "<<s1.getstorage()<<endl;
+        
+        //perform actions
+        s1.makephonecall("12345678910");
+        s1.sendmessage("Zoha","Hello");
+        s1.connectwifi("ptcl network");
+        s1.browseinternet();
+        
+        return 0;
+	  }
