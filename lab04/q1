@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class book{
+	private:
+		string name;
+		string author;
+		string isbn;
+		int totalpages;
+		int pagesread;
+		
+	public:
+		//default constructor
+		book(){
+			name="game of thrones";
+			author="emily james";
+			isbn="123443543654";
+			totalpages=300;
+			pagesread=150;
+		}
+		book(const string &bookname,const string &authorname,const string &isbn_num,int totalpgs){
+			name=bookname;
+			author=authorname;
+			isbn=isbn_num;
+			totalpages=totalpgs;
+		}
+		void updatepages(int pages){
+			pagesread=pagesread+pages;
+			if(pagesread>=totalpages){
+				cout<<"You have finished the book"<<endl;
+			}
+		}
+		
+       //getter methods
+       string getname(){
+       	   return name;
+	   }
+	   string getauthor(){
+	   	return author;
+	   }
+	   string get_isbn(){
+	   	  return isbn;
+	   }
+	   int get_totalpages(){
+	   	  return totalpages;
+	   }
+	   int get_pagesread(){
+	   	return pagesread;
+	   }
+};
+ 
+ int main(){
+ 	book b1;
+ 	cout<<"Name: "<<b1.getname()<<endl;
+ 	cout<<"Author: "<<b1.getauthor()<<endl;
+ 	cout<<"ISBN Number: "<<b1.get_isbn()<<endl;
+ 	cout<<"Total pages: "<<b1.get_totalpages()<<endl;
+ 	cout<<"Pages Read: "<<b1.get_pagesread()<<endl;
+ 	
+ 	
+ 	b1.updatepages(100);
+ 	cout<<"Pages Read: "<<b1.get_pagesread()<<endl;
+ 	
+ 	return 0;
+ }
+
