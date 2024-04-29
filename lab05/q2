@@ -1,0 +1,44 @@
+#include <iostream>
+
+using namespace std;
+
+class LoanHelper {
+private:
+    const double interestRate;
+    double loanAmount; 
+    int monthsToRepay; 
+
+public:
+    LoanHelper(double rate, double amount, int months) : interestRate(rate), loanAmount(amount), monthsToRepay(months) {}
+
+    double calculateMonthlyPayment() const {
+        double monthlyPayment = loanAmount / monthsToRepay; 
+        double monthlyInterest = monthlyPayment * interestRate;
+        double totalPayment = monthlyPayment + monthlyInterest;
+
+        return totalPayment;
+    }
+};
+
+int main() {
+    double rate, amount;
+    int months;
+
+    cout << "Enter interest rate : ";
+    cin >> rate;
+
+    cout << "Enter loan amount: ";
+    cin >> amount;
+
+    cout << "Enter number of months to repay the loan: ";
+    cin >> months;
+
+    LoanHelper loanHelper(rate, amount, months);
+
+    double monthlyPayment = loanHelper.calculateMonthlyPayment();
+
+    
+    cout << "You have to pay " << monthlyPayment << " every month for " << months << " months to repay your loan." << endl;
+
+    return 0;
+}
